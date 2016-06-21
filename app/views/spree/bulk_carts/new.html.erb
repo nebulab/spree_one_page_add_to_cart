@@ -1,0 +1,42 @@
+<div id="bulk-cart">
+  <div class="variants-filter">
+    <label><%=t 'spree.filter' %> <%=t 'spree.product' %>:</label>
+    <input class="search" placeholder="<%=t 'spree.search'%>" />
+  </div>
+
+  <p>&nbsp;</p>
+
+  <div class="variants">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-inverse">
+        <th><%=t 'spree.product' %></th>
+        <th><%=t 'spree.image' %></th>
+        <th><%=t 'spree.price' %></th>
+        <th><%=t 'spree.sku' %></th>
+        <th><%=t 'spree.quantity' %></th>
+      </thead>
+
+      <tbody class="list">
+        <% @variants.each do |variant| %>
+          <tr>
+            <td class="name"><%= variant.name %></td>
+            <td class="image"><%= mini_image(variant) %></td>
+            <td class="price"><%= variant.price %></td>
+            <td class="sku"><%= variant.sku %></td>
+
+            <td class="col-xs-4">
+              <%= form_for :order, url: populate_bulk_cart_path, data: { remote: true, variant: variant.id }, html: { class: "bulk-add-to-cart form-inline" } do |f| %>
+                <%= hidden_field_tag 'variant_id', variant.id %>
+                <%= number_field_tag :quantity, 1, class: 'quantity form-control', min: 1 %>
+
+                <%= button_tag class: 'btn btn-primary', type: :submit do %>
+                  <%= Spree.t(:add_to_cart) %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

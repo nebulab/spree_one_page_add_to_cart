@@ -1,0 +1,14 @@
+var $variant = $('[data-variant="<%= @variant.id %>"].bulk-add-to-cart'),
+    $submit = $variant.find('button[type="submit"]');
+
+<% if @error.present? %>
+  $submit.toggleClass('btn-danger');
+  setTimeout(function() { $submit.toggleClass('btn-danger'); }, 1000);
+<% else %>
+  $submit.toggleClass('btn-success');
+  setTimeout(function() { $submit.toggleClass('btn-success'); }, 1000);
+
+  Spree.fetch_cart();
+<% end %>
+
+$variant.find('input.quantity').val(1);
