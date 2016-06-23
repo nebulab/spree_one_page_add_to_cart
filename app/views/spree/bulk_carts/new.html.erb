@@ -19,9 +19,12 @@
       <tbody class="list">
         <% @variants.each do |variant| %>
           <tr>
-            <td class="name"><%= variant.name %></td>
+            <td class="name">
+              <%= link_to variant.name, variant.product %><br />
+              <small><%= variant.options_text %></small>
+            </td>
             <td class="image"><%= mini_image(variant) %></td>
-            <td class="price"><%= variant.price %></td>
+            <td class="price"><%= display_price(variant) %></td>
             <td class="sku"><%= variant.sku %></td>
 
             <td class="col-xs-4">

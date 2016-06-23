@@ -3,7 +3,7 @@ module Spree
     respond_to :js
 
     def new
-      @variants = Spree::Variant.all
+      @variants = Spree::Variant.all.order(:product_id)
     end
 
     def populate
