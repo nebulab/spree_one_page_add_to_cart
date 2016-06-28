@@ -4,6 +4,10 @@ module SpreeOnePageAddToCart
     isolate_namespace Spree
     engine_name 'spree_one_page_add_to_cart'
 
+    initializer 'spree.one_page_add_to_cart.configuration', before: :load_config_initializers do
+      SpreeOnePageAddToCart::Config = Spree::OnePageAddToCartConfiguration.new
+    end
+
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec

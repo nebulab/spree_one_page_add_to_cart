@@ -3,7 +3,8 @@ module Spree
     respond_to :js
 
     def new
-      @variants = Spree::Variant.all.order(:product_id)
+      @variants = Spree::Variant.where(is_master: master_variants_config)
+                                .order(:product_id)
     end
 
     def populate
@@ -21,6 +22,12 @@ module Spree
       else
         @error = Spree.t(:please_enter_reasonable_quantity)
       end
+    end
+
+    private
+
+    def master_variants_config
+      SpreeOnePageAddToCart::Config.show_master_variants
     end
   end
 end
