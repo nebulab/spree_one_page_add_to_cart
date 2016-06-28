@@ -42,4 +42,10 @@
       </tbody>
     </table>
   </div>
+
+  <div class="text-right">
+    <%= link_to spree.cart_path, class: 'btn btn-primary' do %>
+      <%= Spree.t(:review) %> <%= Spree.t(:cart) %>
+    <% end %>
+  </div>
 </div>
