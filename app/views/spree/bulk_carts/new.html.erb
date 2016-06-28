@@ -32,7 +32,7 @@
                 <%= hidden_field_tag 'variant_id', variant.id %>
                 <%= number_field_tag :quantity, 1, class: 'quantity form-control', min: 1 %>
 
-                <%= button_tag class: 'btn btn-primary', type: :submit do %>
+                <%= button_tag class: 'btn btn-primary', type: :submit, data: { disable_with: "#{Spree.t(:loading)}..." } do %>
                   <%= Spree.t(:add_to_cart) %>
                 <% end %>
               <% end %>

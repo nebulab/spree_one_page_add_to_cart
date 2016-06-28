@@ -2,19 +2,25 @@ var $variant = $('[data-variant="<%= @variant.id %>"].bulk-add-to-cart'),
     $submit = $variant.find('button[type="submit"]');
 
 <% if @error.present? %>
-  $submit.toggleClass('btn-danger');
-  $submit.text('<%= Spree.t(:out_of_stock) %>');
+  $submit.addClass('btn-danger');
 
   setTimeout(function() {
-    $submit.toggleClass('btn-danger');
+    $submit.text('<%= Spree.t(:out_of_stock) %>');
+  }, 1);
+
+  setTimeout(function() {
+    $submit.removeClass('btn-danger');
     $submit.text('<%= Spree.t(:add_to_cart) %>');
   }, 1000);
 <% else %>
-  $submit.toggleClass('btn-success');
-  $submit.text('<%= Spree.t(:added_to_cart) %>');
+  $submit.addClass('btn-success');
 
   setTimeout(function() {
-    $submit.toggleClass('btn-success');
+    $submit.text('<%= Spree.t(:added_to_cart) %>');
+  }, 1);
+
+  setTimeout(function() {
+    $submit.removeClass('btn-success');
     $submit.text('<%= Spree.t(:add_to_cart) %>');
   }, 1000);
 
