@@ -4,7 +4,7 @@ module Spree
 
     def new
       @variants = Spree::Variant.where(is_master: master_variants_config)
-                                .order(:product_id)
+                                .order(:product_id, :position)
     end
 
     def populate
